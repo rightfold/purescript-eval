@@ -1,0 +1,16 @@
+{
+  "name": "purescript-eval",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-prelude": "~1.0.1",
+    "purescript-lazy": "~1.0.0"
+  },
+  "devDependencies": {
+    "purescript-eff": "~1.0.0"
+  }
+}
