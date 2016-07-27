@@ -3,11 +3,11 @@ module Control.Eval
 , defer
 , force
 
+, Lazy
 , Strict
 , Replay
 ) where
 
-import Data.Lazy (Lazy)
 import Data.Lazy as Lazy
 import Prelude
 
@@ -16,7 +16,10 @@ class Eval f where
   defer :: forall a. (Unit -> a) -> f a
   force :: forall a. f a -> a
 
-instance evalLazy :: Eval Lazy where
+-- | Lazy evaluation. `force` calls the thunk once, then memorizes the result.
+type Lazy = Lazy.Lazy
+
+instance evalLazy :: Eval Lazy.Lazy where
   defer = Lazy.defer
   force = Lazy.force
 
