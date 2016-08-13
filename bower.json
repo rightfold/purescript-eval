@@ -1,5 +1,6 @@
 {
   "name": "purescript-eval",
+  "license": "BSD-2-Clause",
   "ignore": [
     "**/.*",
     "node_modules",
