@@ -3,6 +3,9 @@ module Control.Eval
 , defer
 , force
 
+, forceApply, ($!)
+, forceApplyFlipped, (#!)
+
 , Lazy
 , Strict
 , Replay
@@ -36,3 +39,12 @@ newtype Replay a = Replay (Unit -> a)
 instance evalReplay :: Eval Replay where
   defer t = Replay t
   force (Replay t) = t unit
+
+forceApply :: forall f a b. (Eval f) => (a -> b) -> f a -> b
+forceApply f x = f (force x)
+
+forceApplyFlipped :: forall f a b. (Eval f) => f a -> (a -> b) -> b
+forceApplyFlipped = flip forceApply
+
+infixr 0 forceApply as $!
+infixl 1 forceApplyFlipped as #!
